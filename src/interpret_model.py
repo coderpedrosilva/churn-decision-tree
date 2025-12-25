@@ -10,39 +10,41 @@ DATA_PATH = os.path.join(BASE_DIR, "data", "churn_synthetic.csv")
 # Carregar dados
 df = pd.read_csv(DATA_PATH)
 
-X = df.drop("churn", axis=1)
-y = df["churn"]
+# Separar variáveis explicativas e variável alvo
+X = df.drop("cancelamento", axis=1)
+y = df["cancelamento"]
 
-# Encoding
+# Encoding das variáveis categóricas
 X = pd.get_dummies(X, drop_first=True)
 
-# Split
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y,
+# Divisão em treino e teste
+X_treino, X_teste, y_treino, y_teste = train_test_split(
+    X,
+    y,
     test_size=0.25,
     random_state=42,
     stratify=y
 )
 
-# Recriar o modelo
-model = DecisionTreeClassifier(
+# Recriar o modelo de Árvore de Decisão
+modelo = DecisionTreeClassifier(
     criterion="entropy",
     max_depth=5,
     random_state=42
 )
 
-model.fit(X_train, y_train)
+modelo.fit(X_treino, y_treino)
 
-# 1️⃣ Importância das features
-feature_importance = pd.DataFrame({
-    "feature": X.columns,
-    "importance": model.feature_importances_
-}).sort_values(by="importance", ascending=False)
+# 1️⃣ Importância das variáveis
+importancia_variaveis = pd.DataFrame({
+    "variavel": X.columns,
+    "importancia": modelo.feature_importances_
+}).sort_values(by="importancia", ascending=False)
 
-print("\nImportância das Features:")
-print(feature_importance)
+print("\n📊 Importância das Variáveis:")
+print(importancia_variaveis)
 
-# 2️⃣ Regras da árvore (texto)
-print("\nRegras aprendidas pela Árvore:\n")
-tree_rules = export_text(model, feature_names=list(X.columns))
-print(tree_rules)
+# 2️⃣ Regras aprendidas pela árvore (formato texto)
+print("\n🌳 Regras aprendidas pela Árvore de Decisão:\n")
+regras_arvore = export_text(modelo, feature_names=list(X.columns))
+print(regras_arvore)
