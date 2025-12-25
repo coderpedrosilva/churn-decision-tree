@@ -11,8 +11,8 @@ DATA_PATH = os.path.join(BASE_DIR, "data", "churn_synthetic.csv")
 df = pd.read_csv(DATA_PATH)
 
 # Separar variáveis explicativas e variável alvo
-X = df.drop("cancelamento", axis=1)
-y = df["cancelamento"]
+X = df.drop("churn", axis=1)
+y = df["churn"]
 
 # Encoding das variáveis categóricas
 X = pd.get_dummies(X, drop_first=True)
@@ -41,10 +41,10 @@ importancia_variaveis = pd.DataFrame({
     "importancia": modelo.feature_importances_
 }).sort_values(by="importancia", ascending=False)
 
-print("\n📊 Importância das Variáveis:")
+print("\n Importância das Variáveis:")
 print(importancia_variaveis)
 
 # 2️⃣ Regras aprendidas pela árvore (formato texto)
-print("\n🌳 Regras aprendidas pela Árvore de Decisão:\n")
+print("\n Regras aprendidas pela Árvore de Decisão:\n")
 regras_arvore = export_text(modelo, feature_names=list(X.columns))
 print(regras_arvore)

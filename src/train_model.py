@@ -12,8 +12,8 @@ DATA_PATH = os.path.join(BASE_DIR, "data", "churn_synthetic.csv")
 df = pd.read_csv(DATA_PATH)
 
 # 2️⃣ Separar variáveis explicativas e variável alvo
-X = df.drop("evasao", axis=1)
-y = df["evasao"]
+X = df.drop("churn", axis=1)
+y = df["churn"]
 
 # 3️⃣ Encoding das variáveis categóricas
 X = pd.get_dummies(X, drop_first=True)
