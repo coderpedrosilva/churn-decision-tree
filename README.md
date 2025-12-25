@@ -1,4 +1,4 @@
-# 📊 Churn Prediction with Decision Tree (from Scratch)
+# 📊 Previsão de Churn com Árvore de Decisão (Churn Prediction with Decision Tree)
 
 Este projeto demonstra a construção de um modelo de Aprendizado de Máquina supervisionado utilizando Árvore de Decisão, com foco em previsão de churn de clientes.
 
