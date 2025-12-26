@@ -40,7 +40,7 @@ Esse tipo de problema é extremamente comum em Ciência de Dados, especialmente 
 ## 🗂 Estrutura do Projeto
 
 ```text
-churn-decision-tree/
+predicao-churn-arvore-de-decisao/
 │
 ├── data/ # (gerada automaticamente)
 │ └── churn_synthetic.csv
@@ -96,9 +96,9 @@ Exemplos de variáveis:
 
 ### 1️⃣ Clone o repositório
 ```bash
-git clone https://github.com/seu-usuario/churn-decision-tree.git
+git clone https://github.com/coderpedrosilva/predicao-churn-arvore-de-decisao.git
 
-cd churn-decision-tree
+cd predicao-churn-arvore-de-decisao
 ```
 
 ### 2️⃣ Crie um ambiente virtual (opcional, recomendado)
