@@ -18,16 +18,22 @@ async function carregarClientes(somenteRisco = false) {
     });
 }
 
-function verDetalhes(cliente) {
+function verDetalhes(cliente){
     let html = `<h3>${cliente.cliente}</h3>`;
     html += `<p><b>Classe:</b> ${cliente.classe}</p>`;
     html += `<p><b>Risco:</b> ${(cliente.probabilidade * 100).toFixed(0)}%</p>`;
 
-    if (cliente.motivos.length) {
+    if(cliente.motivos.length){
         html += "<b>Motivos:</b><ul>";
         cliente.motivos.forEach(m => html += `<li>${m}</li>`);
         html += "</ul>";
     }
 
     document.getElementById("detalhes").innerHTML = html;
+    document.getElementById("modal").style.display = "block";
 }
+
+function fecharModal(){
+    document.getElementById("modal").style.display = "none";
+}
+
