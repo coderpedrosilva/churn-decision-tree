@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 import joblib
 import os
@@ -8,10 +9,16 @@ import pandas as pd
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MODEL_PATH = os.path.join(BASE_DIR, "api", "model.joblib")
 DATA_PATH = os.path.join(BASE_DIR, "data", "churn_synthetic.csv")
+STATIC_DIR = os.path.join(BASE_DIR, "api", "static")
 
 model = joblib.load(MODEL_PATH)
 
 app = FastAPI(title="Churn Decision API")
+
+# =========================
+# Servir Frontend
+# =========================
+app.mount("/app", StaticFiles(directory=STATIC_DIR, html=True), name="static")
 
 # =========================
 # Modelo de entrada

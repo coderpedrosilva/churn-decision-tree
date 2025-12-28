@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard de Churn</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h2>Monitoramento de Churn</h2>
+
+  <button onclick="carregarClientes()">Listar Todos</button>
+  <button onclick="carregarClientes(true)">Somente Em Risco</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Cliente</th>
+        <th>Risco</th>
+        <th>Classe</th>
+        <th>Ação</th>
+      </tr>
+    </thead>
+    <tbody id="tabela"></tbody>
+  </table>
+
+  <div id="detalhes"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
