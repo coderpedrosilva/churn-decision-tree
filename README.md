@@ -1,68 +1,109 @@
 # 📊 Previsão de Churn com Árvore de Decisão (Churn Prediction with Decision Tree)
 
-Este projeto demonstra a construção de um modelo de Aprendizado de Máquina supervisionado utilizando Árvore de Decisão, com foco em previsão de churn de clientes.
+Este projeto apresenta um sistema completo de previsão de churn, indo além de um simples modelo de Machine Learning.
+Ele entrega um pipeline automatizado + API de inferência + dashboard web interativo, permitindo analisar clientes, visualizar riscos e justificar decisões do modelo.
 
-O objetivo é apresentar todo o pipeline de ML, desde a geração de dados sintéticos, passando por treinamento, avaliação, visualização da árvore, até a automação completa via script principal (`main.py`).
-
-> Projeto desenvolvido inteiramente em Python, com execução local (Visual Studio Code), sem dependência de notebooks.
+Trata-se de um projeto end-to-end, com foco em arquitetura profissional de ML, ideal para portfólio de Ciência de Dados, Machine Learning e Engenharia de Software.
 
 ---
 
 ## 🎯 Objetivo do Projeto
 
-Construir um modelo capaz de responder perguntas do tipo:
+Responder perguntas como:
 
-> “Dado o perfil de um cliente, ele tem alta probabilidade de cancelar o serviço (churn)?”
+> “Quais clientes apresentam maior risco de churn e por quê?”
 
-Esse tipo de problema é extremamente comum em Ciência de Dados, especialmente em:
-- Telecom
-- Streaming
-- SaaS
-- Bancos
-- Assinaturas digitais
+Além de prever, o sistema explica os fatores de risco e proteção de cada cliente, entregando uma visão clara para analistas, gestores e times de negócio.
+
+---
+
+## ⚙️ Fluxo de Execução do Projeto
+
+A execução segue um pipeline organizado em três etapas:
+
+### 1️⃣ Pipeline de Machine Learning
+
+Executar o arquivo principal:
+
+```bash
+\python main.py
+```
+
+Esse comando:
+
+- Gera automaticamente o dataset sintético
+- Treina a Árvore de Decisão
+- Avalia o modelo
+- Gera a imagem da árvore
+- Exporta o modelo treinado
+
+---
+
+### 2️⃣ Inicializar a API de Inferência
+
+```bash
+\uvicorn api.app:app --reload
+```
+
+A API ficará disponível em:
+
+- API base → http://127.0.0.1:8000
+
+- Swagger UI → http://127.0.0.1:8000/docs
+
+
+---
+
+### 3️⃣ Abrir o Dashboard Web
+
+Interface web disponível em:
+
+👉 http://127.0.0.1:8000/app
+
+A partir dela é possível:
+- Listar clientes
+- Ordenar por risco
+- Visualizar motivos de churn
+- Analisar fatores positivos e negativos de cada perfil
+
+---
+
+## 🖥 Interface Web (Dashboard)
+
+![Dashboard de Churn](assets/screenshot-ui.png)
+
+---
+
+## 🧠 Visualização da Árvore de Decisão
+
+A imagem abaixo representa a Árvore de Decisão aprendida pelo modelo, mostrando de forma visual como o algoritmo toma decisões para classificar clientes como ativos ou em risco de churn.
+
+Cada nó da árvore indica:
+- A variável utilizada na decisão  
+- O valor de corte aplicado  
+- A proporção de clientes em cada classe  
+- O caminho seguido até a decisão final  
+
+Essa visualização permite compreender:
+- Quais fatores mais impactam o churn  
+- Como o modelo interpreta o comportamento dos clientes  
+- Onde estão os principais pontos de risco e proteção  
+
+![Árvore de Decisão](assets/screenshot-decision-tree.png)
 
 ---
 
 ## 🧠 Conceitos Aplicados
 
-- Aprendizado de Máquina Supervisionado
-- Árvores de Decisão (Decision Tree Classifier)
+- Machine Learning Supervisionado
+- Árvores de Decisão
 - Entropia e Ganho de Informação
+- Feature Engineering
 - Geração de dados sintéticos
-- Feature engineering simples
-- Treinamento e validação de modelo
-- Avaliação com métricas de classificação
-- Visualização do modelo aprendido
-- Boas práticas de organização de projeto ML
-
----
-
-## 🗂 Estrutura do Projeto
-
-```text
-predicao-churn-arvore-de-decisao/
-│
-├── data/ # (gerada automaticamente)
-│ └── churn_synthetic.csv
-│
-├── images/ # (gerada automaticamente)
-│ └── decision_tree.png
-│
-├── src/
-│ ├── generate_data.py # Gera dataset sintético de churn]
-│ ├── interpret_model.py # Interpreta decisões e importância das variáveis
-│ ├── train_model.py # Treina e avalia a árvore de decisão
-│ └── visualize_tree.py # Gera imagem da árvore aprendida
-│
-├── .gitignore
-├── main.py # Orquestra todo o pipeline
-├── requirements.txt
-└── README.md
-```
-
-📌 Importante:
-As pastas data/ e images/ não precisam ser criadas manualmente.
-O main.py verifica e cria automaticamente se não existirem.
+- Avaliação de modelos
+- Deploy local com FastAPI
+- API REST de inferência
+- Interface Web de monitoramento
 
 ---
 
@@ -73,101 +114,51 @@ O main.py verifica e cria automaticamente se não existirem.
 - NumPy
 - Scikit-learn
 - Matplotlib
+- FastAPI
+- HTML, CSS, JavaScript
 
 ---
 
-## 📈 Dataset
+## 🗂 Estrutura do Projeto
 
-O dataset é 100% sintético, gerado via código, com aproximadamente 1.500 registros, simulando características comuns de clientes.
-
-Exemplos de variáveis:
-- Tempo de contrato
-- Tipo de plano
-- Uso mensal
-- Reclamações
-- Atrasos de pagamento
-- Churn (variável alvo)
-
-👉 O arquivo CSV não é versionado, seguindo boas práticas de ML.
-
----
-
-## ⚙️ Instalação e Execução
-
-### 1️⃣ Clone o repositório
-```bash
-git clone https://github.com/coderpedrosilva/predicao-churn-arvore-de-decisao.git
-
-cd predicao-churn-arvore-de-decisao
+```text
+predicao-churn-arvore-de-decisao/
+│
+├── data/
+│ └── churn_synthetic.csv
+│
+├── images/
+│ └── decision_tree.png
+│
+├── src/
+│ ├── generate_data.py
+│ ├── train_model.py
+│ ├── interpret_model.py
+│ └── visualize_tree.py
+│
+├── api/
+│ ├── app.py
+│ ├── model.joblib
+│ └── static/
+│ ├── index.html
+│ ├── style.css
+│ └── script.js
+│
+├── main.py
+├── requirements.txt
+└── README.md
 ```
 
-### 2️⃣ Crie um ambiente virtual (opcional, recomendado)
-```bash
-python -m venv .venv
-source .venv/bin/activate # Linux/Mac
-.venv\Scripts\activate # Windows
-```
+---
 
-### 3️⃣ Instale as dependências
-```bash
-pip install -r requirements.txt
-```
+## 🚀 Diferenciais
 
-### 4️⃣ Execute o pipeline completo
-```bash
-python main.py
-```
-
-Esse comando irá:
-1. Gerar o dataset sintético
-2. Treinar o modelo de Árvore de Decisão
-3. Avaliar o desempenho
-4. Gerar a visualização da árvore em images/
+✔ Projeto completo (modelo + API + interface)
+✔ Visualização de decisões do modelo
+✔ Justificativa dos fatores de risco e proteção
+✔ Arquitetura próxima de produto real
+✔ Excelente para portfólio de Data Science e ML
 
 ---
 
-## 🌳 Visualização do Modelo
-
-O projeto gera automaticamente uma imagem da Árvore de Decisão, permitindo entender:
-- Quais variáveis são mais importantes
-- Como o modelo toma decisões
-- Onde ocorrem os principais splits
-
----
-
-## 📊 Avaliação do Modelo
-
-O modelo é avaliado utilizando:
-- Accuracy
-- Relatório de Classificação (Precision, Recall, F1-score)
-
----
-
-## 🚀 Diferenciais do Projeto
-
-✔ Pipeline automatizado (sem notebooks)
-
-✔ Código modular e organizado
-
-✔ Dados gerados por script (reprodutibilidade)
-
-✔ Visualização do modelo aprendido
-
-✔ Estrutura profissional para portfólio
-
-✔ Fácil extensão para outros algoritmos
-
----
-
-## 🔮 Próximos Passos
-
-- Ajuste de hiperparâmetros
-- Comparação com Random Forest
-- Validação cruzada
-- Feature importance detalhada
-- Exportação do modelo treinado
-- API simples para inferência
-
----
-
-Projeto desenvolvido com foco em aprendizado conceitual, clareza e boas práticas de Machine Learning.
+Projeto desenvolvido com foco em boas práticas, clareza conceitual e aplicabilidade real de Machine Learning em negócios.
