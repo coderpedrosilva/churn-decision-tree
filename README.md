@@ -72,6 +72,8 @@ A partir dela é possível:
 
 ![Dashboard de Churn](assets/screenshot-ui.png)
 
+![Dashboard de Churn](assets/screenshot-ui-modal.png)
+
 ---
 
 ## 🧠 Visualização da Árvore de Decisão
@@ -89,7 +91,7 @@ Essa visualização permite compreender:
 - Como o modelo interpreta o comportamento dos clientes  
 - Onde estão os principais pontos de risco e proteção  
 
-![Árvore de Decisão](assets/screenshot-decision-tree.png)
+![Árvore de Decisão](assets/decision-tree.png)
 
 ---
 
