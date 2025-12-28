@@ -42,7 +42,7 @@ Esse comando:
 ### 2️⃣ Inicializar a API de Inferência
 
 ```bash
-\uvicorn api.app:app --reload
+\uvicorn api.app:app 
 ```
 
 A API ficará disponível em:
