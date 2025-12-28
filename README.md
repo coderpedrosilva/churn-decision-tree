@@ -91,7 +91,7 @@ Essa visualização permite compreender:
 - Como o modelo interpreta o comportamento dos clientes  
 - Onde estão os principais pontos de risco e proteção  
 
-![Árvore de Decisão](assets/decision-tree.png)
+![Árvore de Decisão](assets/decision_tree.png)
 
 ---
 
