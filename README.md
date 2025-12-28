@@ -126,27 +126,32 @@ Essa visualização permite compreender:
 ```text
 predicao-churn-arvore-de-decisao/
 │
-├── data/
+├── api/
+│ ├── app.py               # API FastAPI com inferência e dashboard
+│ ├── model.joblib         # Modelo treinado exportado
+│ └── static/              # Interface web (dashboard)
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
+│
+├── assets/                # Imagens para documentação do GitHub
+│ ├── decision_tree.png
+│ ├── screenshot-ui.png
+│ └── screenshot-ui-modal.png
+│
+├── data/                  # Dataset sintético (gerado automaticamente)
 │ └── churn_synthetic.csv
 │
-├── images/
+├── images/                # Visualização da árvore de decisão
 │ └── decision_tree.png
 │
-├── src/
-│ ├── generate_data.py
-│ ├── train_model.py
-│ ├── interpret_model.py
-│ └── visualize_tree.py
+├── src/                   # Pipeline de Machine Learning
+│ ├── generate_data.py     # Geração de dados sintéticos
+│ ├── train_model.py       # Treinamento do modelo
+│ ├── interpret_model.py   # Interpretação das decisões
+│ └── visualize_tree.py    # Exportação da árvore aprendida
 │
-├── api/
-│ ├── app.py
-│ ├── model.joblib
-│ └── static/
-│ ├── index.html
-│ ├── style.css
-│ └── script.js
-│
-├── main.py
+├── main.py                # Orquestrador do pipeline completo
 ├── requirements.txt
 └── README.md
 ```
@@ -156,9 +161,13 @@ predicao-churn-arvore-de-decisao/
 ## 🚀 Diferenciais
 
 ✔ Projeto completo (modelo + API + interface)
+
 ✔ Visualização de decisões do modelo
+
 ✔ Justificativa dos fatores de risco e proteção
+
 ✔ Arquitetura próxima de produto real
+
 ✔ Excelente para portfólio de Data Science e ML
 
 ---
