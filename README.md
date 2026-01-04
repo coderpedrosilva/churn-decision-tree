@@ -39,6 +39,34 @@ Esse comando:
 
 ---
 
+## 🧠 Como acontece o Aprendizado de Machine Learning
+
+O aprendizado do modelo ocorre no arquivo `train_model.py` e segue o processo de Machine Learning supervisionado.
+
+Primeiro, o sistema carrega o dataset sintético gerado automaticamente pelo pipeline, contendo exemplos de clientes com seus respectivos comportamentos e o rótulo final `churn`, que indica se o cliente cancelou ou permaneceu ativo.
+
+Cada registro do dataset funciona como um **exemplo de treinamento**, onde o modelo aprende relações entre:
+- Perfil do cliente  
+- Comportamento  
+- Resultado (churn ou não churn)  
+
+Em seguida, o dataset é dividido em dois grupos:
+- **Conjunto de treino (75%)** → usado para o aprendizado  
+- **Conjunto de teste (25%)** → usado para validação  
+
+Durante o treinamento, a Árvore de Decisão analisa todas as variáveis e constrói regras do tipo:
+> “Se o cliente possui este comportamento, então a probabilidade de churn tende a ser maior/menor.”
+
+O critério utilizado é a **entropia**, que mede o nível de incerteza dos dados. A cada divisão, o algoritmo escolhe a variável que mais reduz a entropia, ou seja, que mais aumenta o **ganho de informação**.
+
+Assim, a árvore é construída de cima para baixo, criando um caminho lógico de decisões até chegar à classificação final de cada cliente.
+
+Após o treinamento, o modelo é avaliado com dados nunca vistos, gerando métricas como acurácia, matriz de confusão e relatório de classificação.
+
+Por fim, o modelo treinado é exportado (`model.joblib`) e passa a ser utilizado pela API para realizar inferências em tempo real e alimentar o dashboard web.
+
+---
+
 ### 2️⃣ Inicializar a API de Inferência
 
 ```bash
@@ -106,34 +134,6 @@ Essa visualização permite compreender:
 - Deploy local com FastAPI
 - API REST de inferência
 - Interface Web de monitoramento
-
----
-
-## 🧠 Como acontece o Aprendizado de Machine Learning
-
-O aprendizado do modelo ocorre no arquivo `train_model.py` e segue o processo de Machine Learning supervisionado.
-
-Primeiro, o sistema carrega o dataset sintético gerado automaticamente pelo pipeline, contendo exemplos de clientes com seus respectivos comportamentos e o rótulo final `churn`, que indica se o cliente cancelou ou permaneceu ativo.
-
-Cada registro do dataset funciona como um **exemplo de treinamento**, onde o modelo aprende relações entre:
-- Perfil do cliente  
-- Comportamento  
-- Resultado (churn ou não churn)  
-
-Em seguida, o dataset é dividido em dois grupos:
-- **Conjunto de treino (75%)** → usado para o aprendizado  
-- **Conjunto de teste (25%)** → usado para validação  
-
-Durante o treinamento, a Árvore de Decisão analisa todas as variáveis e constrói regras do tipo:
-> “Se o cliente possui este comportamento, então a probabilidade de churn tende a ser maior/menor.”
-
-O critério utilizado é a **entropia**, que mede o nível de incerteza dos dados. A cada divisão, o algoritmo escolhe a variável que mais reduz a entropia, ou seja, que mais aumenta o **ganho de informação**.
-
-Assim, a árvore é construída de cima para baixo, criando um caminho lógico de decisões até chegar à classificação final de cada cliente.
-
-Após o treinamento, o modelo é avaliado com dados nunca vistos, gerando métricas como acurácia, matriz de confusão e relatório de classificação.
-
-Por fim, o modelo treinado é exportado (`model.joblib`) e passa a ser utilizado pela API para realizar inferências em tempo real e alimentar o dashboard web.
 
 ---
 
